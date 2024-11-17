@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="layout_columns">3</integer>
+    <color type="raw" name="color_odd">@color/blue_500</color>
+    <color type="raw" name="color_even">@color/red_500</color>
+</resources>
