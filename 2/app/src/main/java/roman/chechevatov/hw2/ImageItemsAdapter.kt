@@ -16,7 +16,7 @@ import kotlinx.parcelize.Parcelize
 import roman.chechevatov.hw2.model.ImageItem
 
 class ImageItemsAdapter(
-    private val mainActivity: MainActivity,
+    private val mainActivity: MainFragment,
     private val items: MutableList<ImageItem> = mutableListOf()
 ) : RecyclerView.Adapter<ImageItemViewHolder>() {
 

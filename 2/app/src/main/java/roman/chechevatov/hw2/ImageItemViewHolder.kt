@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import roman.chechevatov.hw2.model.ImageItem
 
-class ImageItemViewHolder(private val mainActivity: MainActivity, view: View) : RecyclerView.ViewHolder(view) {
+class ImageItemViewHolder(private val mainActivity: MainFragment, view: View) : RecyclerView.ViewHolder(view) {
 
     private val layout: FrameLayout = view.findViewById(R.id.card_layout_no_image)
     private val loading: ProgressBar = view.findViewById(R.id.loading_bar)

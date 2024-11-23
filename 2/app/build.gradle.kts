@@ -51,4 +51,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
     implementation(libs.retrofit)
 
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.fragment.ktx)
+
 }
