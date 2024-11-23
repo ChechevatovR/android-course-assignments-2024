@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red_500">#FF3C48</color>
     <color name="blue_500">#347DFD</color>
+    <color name="card_background">#E9E9E9</color>
+    <color name="spinner">#3A3A3A</color>
 </resources>

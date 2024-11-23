@@ -7,15 +7,10 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/gradle
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
 local.properties
-/gradle/wrapper/gradle-wrapper.jar
-/gradle/wrapper/gradle-wrapper.properties
-/gradle/libs.versions.toml
-/gradle.properties
-/gradlew
-/gradlew.bat
