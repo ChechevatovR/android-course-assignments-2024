@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="layout_columns">3</integer>
-    <color type="raw" name="color_odd">@color/blue_500</color>
-    <color type="raw" name="color_even">@color/red_500</color>
+    <string name="pixabay_endpoint">https://pixabay.com/api/</string>
+    <string name="pixabay_api_key">47128403-639fea9715205e582feebb26b</string>
 </resources>

@@ -20,12 +20,12 @@ class MainFragment: Fragment(R.layout.fragment_main) {
     private lateinit var loadMoreButton: Button
     private lateinit var loadingSpinner: ProgressBar
     private var pageNumber = 1
-    private val imageProvider: ImageProviderService =
-        PixabayImageProvider(PixabayApiClient("47128403-639fea9715205e582feebb26b"))
+    private lateinit var imageProvider: ImageProviderService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        imageProvider = PixabayImageProvider(PixabayApiClient(getString(R.string.pixabay_api_key), baseUrl = getString(R.string.pixabay_endpoint)))
         adapter = ImageItemsAdapter(this)
         adapter.loadInstanceState(savedInstanceState)
     }
