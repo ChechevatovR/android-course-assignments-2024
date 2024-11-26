@@ -15,6 +15,8 @@ import roman.chechevatov.hw2.model.ImageItem
 import roman.chechevatov.hw2.service.ImageProviderService
 import roman.chechevatov.hw2.service.PixabayImageProvider
 
+private const val PAGE_NUMBER_BUNDLE_KEY = "roman.chechevatov.hw2.MainFragment.pageNumber"
+
 class MainFragment: Fragment(R.layout.fragment_main) {
     private lateinit var adapter: ImageItemsAdapter
     private lateinit var loadMoreButton: Button
@@ -28,6 +30,9 @@ class MainFragment: Fragment(R.layout.fragment_main) {
         imageProvider = PixabayImageProvider(PixabayApiClient(getString(R.string.pixabay_api_key), baseUrl = getString(R.string.pixabay_endpoint)))
         adapter = ImageItemsAdapter(this)
         adapter.loadInstanceState(savedInstanceState)
+        savedInstanceState?.let {
+            pageNumber = it.getInt(PAGE_NUMBER_BUNDLE_KEY)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,6 +51,7 @@ class MainFragment: Fragment(R.layout.fragment_main) {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putInt(PAGE_NUMBER_BUNDLE_KEY, pageNumber)
         adapter.saveInstanceState(outState)
     }
 
