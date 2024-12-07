@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -18,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_margin="4dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/loading_error_text">
 
         <ProgressBar
             android:id="@+id/loading_bar"
@@ -35,5 +36,17 @@
             android:layout_gravity="center"
             android:text="@string/load_more_button_text" />
 
+
+
     </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loading_error_text"
+        android:visibility="invisible"
+        tools:text="Ошибка загрузки"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

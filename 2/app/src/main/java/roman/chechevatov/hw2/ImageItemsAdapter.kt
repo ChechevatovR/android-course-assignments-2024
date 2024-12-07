@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import roman.chechevatov.hw2.model.ImageItem
 
+private const val IMAGES_BUNDLE_KEY = "roman.chechevatov.hw2.ImageItemsAdapter.items"
+
 class ImageItemsAdapter(
     private val mainActivity: MainFragment,
     private val items: MutableList<ImageItem> = mutableListOf()
@@ -53,7 +55,7 @@ class ImageItemsAdapter(
     }
 
     fun loadInstanceState(savedState: Bundle?) {
-        savedState?.getParcelable("AAA", ParcelItems::class.java)?.let {
+        savedState?.getParcelable(IMAGES_BUNDLE_KEY, ParcelItems::class.java)?.let {
             val sizeBefore = items.size
             items.clear()
             notifyItemRangeChanged(0, sizeBefore)
@@ -63,7 +65,7 @@ class ImageItemsAdapter(
     }
 
     fun saveInstanceState(outState: Bundle) {
-        outState.putParcelable("AAA", ParcelItems(items))
+        outState.putParcelable(IMAGES_BUNDLE_KEY, ParcelItems(items))
     }
 
     @Parcelize

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -21,6 +22,7 @@ class MainFragment: Fragment(R.layout.fragment_main) {
     private lateinit var adapter: ImageItemsAdapter
     private lateinit var loadMoreButton: Button
     private lateinit var loadingSpinner: ProgressBar
+    private lateinit var loadingErrorText: TextView
     private var pageNumber = 1
     private lateinit var imageProvider: ImageProviderService
 
@@ -47,6 +49,13 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             }
         }
         loadingSpinner = view.findViewById(R.id.loading_bar)
+        loadingErrorText = view.findViewById(R.id.loading_error_text)
+
+        if (savedInstanceState == null) {
+            CoroutineScope(Dispatchers.IO).launch {
+                addPageOfImages()
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -61,6 +70,7 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             return@async try {
                 imageProvider.getImageUrls(pageNumber).also { pageNumber++ }
             } catch (e: ImageProviderService.ImageException) {
+                displayLoadingError(e.message ?: "Ошибка загрузки")
                 listOf()
             }
         }.await()
@@ -87,6 +97,13 @@ class MainFragment: Fragment(R.layout.fragment_main) {
         }
     }
 
+    private fun displayLoadingError(text: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            loadingErrorText.visibility = View.VISIBLE
+            loadingErrorText.text = text
+        }
+    }
+
     private fun showLoadMoreButton() {
         CoroutineScope(Dispatchers.Main).launch {
             loadMoreButton.visibility = View.VISIBLE
@@ -98,6 +115,7 @@ class MainFragment: Fragment(R.layout.fragment_main) {
         CoroutineScope(Dispatchers.Main).launch {
             loadMoreButton.visibility = View.GONE
             loadingSpinner.visibility = View.VISIBLE
+            loadingErrorText.visibility = View.GONE
         }
     }
 }
